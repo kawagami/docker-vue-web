@@ -1,32 +1,31 @@
 <template>
-  <div class="hello">
-    <h1>之後的遊戲頁面</h1>
+  <div class="container">
+    <div class="game-border"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: String
-  }
-}
+    msg: String,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.container {
+  background-color: rgb(0, 255, 128);
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.game-border{
+  width: 60%;
+  height: 100%;
+  background-color: #faa;
 }
 </style>
