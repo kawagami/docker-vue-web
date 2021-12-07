@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="game-border"></div>
+    <div class="game-border">古老手機遊戲</div>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container {
-  background-color: rgb(0, 255, 128);
+  background-color: rgb(0, 46, 105);
   width: 100%;
   height: 60vh;
   display: flex;
@@ -24,8 +24,8 @@ export default {
   align-items: center;
 }
 .game-border{
-  width: 60%;
-  height: 100%;
-  background-color: #faa;
+  width: 600px;
+  height: 600px;
+  background-color: rgb(201, 114, 114);
 }
 </style>
