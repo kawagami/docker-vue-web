@@ -1,15 +1,19 @@
 <template>
   <div class="container">
-    <div class="game-border">古老手機遊戲</div>
+    <div class="game-border">
+      <Game/>
+    </div>
   </div>
 </template>
 
 <script>
+import Game from './Game.vue'
+
 export default {
   name: "HelloWorld",
-  props: {
-    msg: String,
-  },
+  components: {
+    Game
+  }
 };
 </script>
 
