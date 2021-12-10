@@ -1,9 +1,10 @@
 <template>
   <div class="game">
     這是game
-    <button v-on:click="sumSomething">按鈕</button>
+    <div class="test-block"></div>
+    <button v-on:click="testBlock">按鈕</button>
     <div>
-      <button v-if="flag">會不會顯示</button>
+      <button v-if="flag">會不會顯示sgrg465123</button>
     </div>
   </div>
 </template>
@@ -20,6 +21,12 @@ export default {
     sumSomething: function () {
       return (this.flag = !this.flag);
     },
+    testBlock: function () {
+      const test = document.querySelector(".test-block");
+      test.style.backgroundColor = "black";
+      // console.log(123);
+      // return true;
+    },
   },
 };
 </script>
@@ -30,5 +37,11 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgb(180, 48, 48);
+}
+
+.test-block {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
 }
 </style>
