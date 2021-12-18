@@ -1,13 +1,13 @@
 <template>
   <!-- <button v-on:click="testBlock">按鈕</button> -->
   <div class="game">
-    <div class="game-middle" v-for="x in gameArray" :key="x">
-      <div class="game-inner" v-for="y in x" :key="y">
-        <div class="game-unit" v-if="y" style="background-color: #fff">
-          {{ y }}
+    <div class="game-middle" v-for="x in gameArray" :key="x['key']">
+      <div class="game-inner" v-for="y in x" :key="y.key">
+        <div class="game-unit" v-if="y.value" style="background-color: #fff">
+          {{ y.value }}
         </div>
         <div class="game-unit" v-else style="background-color: #000">
-          {{ y }}
+          {{ y.value }}
         </div>
       </div>
     </div>
@@ -24,27 +24,37 @@ export default {
     return {
       KeyboardNow: "這裡會顯示按了什麼按鈕",
       gameArray: [],
+      gameCount: 0,
     };
   },
   methods: {
     formatGameArray: function () {
-      for (let i = 0; i < 10; i++) {
+      const size = 15;
+      for (let i = 0; i < size; i++) {
         this.gameArray[i] = [];
-        for (let j = 0; j < 10; j++) {
+        this.gameArray[i]["key"] = Math.random().toString(16).slice(2);
+        for (let j = 0; j < size; j++) {
           // this.gameArray[i][j] = `${i} ${j}`;
           // this.gameArray[i][j] = `${Math.round(Math.random())}`;
-          this.gameArray[i][j] = Math.round(Math.random());
+          this.gameArray[i][j] = {
+            value: Math.round(Math.random()),
+            key: Math.random().toString(16).slice(2),
+          };
         }
       }
     },
     outputView: function () {
       let map = this.gameArray;
-      map.forEach(function (x) {
-        x.forEach(function (y) {
-          console.log(y);
-          // return ture;
+      // this.gameArray.forEach(function (x) {
+      map.forEach(function (x, xIndex) {
+        x.forEach(function (y, yIndex) {
+          map[xIndex][yIndex] = {
+            value: Math.round(Math.random()),
+            key: Math.random().toString(16).slice(2),
+          };
         });
       });
+      this.gameArray = map;
     },
     keyboardWatch: function () {
       document.onkeydown = (e) => {
@@ -63,12 +73,16 @@ export default {
         // }
         if (el && el.code === "ArrowLeft") {
           console.log("左");
+          this.outputView();
         } else if (el && el.code === "ArrowUp") {
           console.log("上");
+          this.outputView();
         } else if (el && el.code === "ArrowRight") {
           console.log("右");
+          this.outputView();
         } else if (el && el.code === "ArrowDown") {
           console.log("下");
+          this.outputView();
         }
       };
     },
@@ -78,6 +92,13 @@ export default {
       const two = Math.floor(Math.random() * 255);
       const three = Math.floor(Math.random() * 255);
       test.style.backgroundColor = `rgb(${one}, ${two}, ${three})`;
+    },
+    test: function () {
+      setInterval(() => {
+        this.gameCount++;
+        this.outputView();
+        console.log(this.gameCount);
+      }, 1000);
     },
   },
   // created() {
@@ -93,6 +114,9 @@ export default {
     // 監控鍵盤事件
     this.keyboardWatch();
     // console.log(this.gameArray);
+
+    // 測試
+    this.test();
   },
 };
 </script>
